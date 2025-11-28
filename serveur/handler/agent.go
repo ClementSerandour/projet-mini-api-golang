@@ -1,17 +1,18 @@
 package handler
+//Import des packages nécessaires
 import (
     "net/http"
 	"encoding/json"
     "time"
 )
-
+//Structure des métriques
 type Metrics struct {
 	Hostname string `json:"hostname"`
 	OsName string `json:"osName"`
     UpTime string `json:"uptime"`
     Timestamp time.Time `json:"timestamp"`
 }
-
+//Map pour stocker les métriques des agents
 var (
     Agents = make(map[string]Metrics)
 )
@@ -33,7 +34,7 @@ func AgentUpdate(w http.ResponseWriter, r *http.Request){
 //Fonction d'affichage des métriques avec le status de l'agents, UP-WARNING-DOWN
 func AgentInfo(w http.ResponseWriter, r *http.Request){
     w.Header().Set("Content-Type", "application/json")
-
+    //Structure pour le résultat avec le status
     type MetricsWithStatus struct {
         Hostname string `json:"hostname"`
         OsName   string `json:"osName"`

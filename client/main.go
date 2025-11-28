@@ -1,6 +1,7 @@
 //main.go
 package main
-import(
+//Import des packages nécessaires
+import (
     "crypto/tls"
     "fmt"
     "net/http"
@@ -10,10 +11,11 @@ import(
     "encoding/json"
     "bytes"
 )
+//Structure pour l'endpoint ECHO
 type Content struct {
     Value string `json:"value"`
 }
-
+//Fonction principale
 func main(){
     client:= &http.Client{
         Transport: &http.Transport{
@@ -60,7 +62,7 @@ func main(){
         fmt.Println("Error marshalling JSON:", err)
         return
     }
-
+	//Envois en POST
 	res, err = client.Post("https://localhost:3030/echo", "application/json", bytes.NewReader(body))
     if err != nil {
         fmt.Println("Error making POST request:", err)
@@ -79,7 +81,7 @@ func main(){
 	if err != nil {
 		log.Fatal(err)
 	}
-	body, err = io.ReadAll(res.Body)
+	body, err = io.ReadAll(res.Body) 
 	res.Body.Close()
 	if res.StatusCode > 299 {
 		log.Fatalf("Response failed with status code: %d and\nbody: %s\n", res.StatusCode, body)

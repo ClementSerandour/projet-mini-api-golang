@@ -1,11 +1,12 @@
 //main.go
 package main
+//Import des packages nécessaires
 import (
     "log"
     "net/http"
 	"tp-mini-api/handler"
 )
-
+//Fonction principale
 func main(){
 	//Endpoint HEALTH
     http.HandleFunc("GET /health", handler.HealthCheck)

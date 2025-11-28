@@ -1,4 +1,5 @@
 package main
+//Import des packages nécessaires
 import (
 	"os"
 	"fmt"
@@ -10,14 +11,14 @@ import (
     "crypto/tls"
 	"time"
 )
-
+//Structure des métriques
 type Metrics struct {
 	Hostname string `json:"hostname"`
 	OsName string `json:"osName"`
     UpTime string `json:"uptime"`
     Timestamp time.Time `json:"timestamp"`
 }
-
+//Fonction principale
 func main(){
 	//Heure de démarage de l'agent
 	start := time.Now()
@@ -34,7 +35,7 @@ func main(){
 	//Récupération du temps d'activité
 	uptime := time.Since(start)
 	
-
+	//Création de la structure Metrics
 	i := Metrics{
 		Hostname: host,
 		OsName: osName,
